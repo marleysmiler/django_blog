@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<h2>please login:</h2>
+<p>(Must be Superuser, please check admin for issues.)</p>
+
+{% if form.errors %}
+
+  <p>Your Username and Password didn't match.Please try again!</p>
+
+{% endif %}
+
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="btn btn-primary" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+
+{% endblock %}
